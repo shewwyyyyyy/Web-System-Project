@@ -12,8 +12,6 @@
     <main class="flex-grow container mx-auto px-6 py-8">
 
 
-    
-
 
       <div
         class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-md"
