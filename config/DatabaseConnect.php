@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$database = "blogging";
+$database = "blogging"; //new comment
 $username = "root";
 $password = "";
 
