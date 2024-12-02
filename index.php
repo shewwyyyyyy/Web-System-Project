@@ -1,4 +1,5 @@
-<?php require_once("includes/header.php"); ?>
+<?php require_once("includes/header.php"); ?> 
+
 
 <body class="bg-gray-100">
   <?php include 'includes/navbar.php'; ?>
@@ -7,7 +8,7 @@
         <!-- What's on your mind section -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-8">
             <h2 class="text-xl font-semibold mb-4">What's on your mind?</h2>
-            <form>
+            <form action="post/add_post.php" method="POST">
                 <textarea class="w-full p-2 border border-gray-300 rounded-md mb-4" rows="3" placeholder="Share your thoughts..."></textarea>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Post</button>
             </form>

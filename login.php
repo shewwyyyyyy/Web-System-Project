@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -5,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
+  
   <!-- Navbar -->
   <?php include 'includes/navbar.php'; ?>
 
@@ -19,7 +24,7 @@
         <div class="px-6 py-8">
           <h2 class="text-2xl font-bold text-center text-gray-700 mb-6"> Welcome Back! </h2>
           
-          <form>
+          <form action="authentication/login.php" method="POST">
             <div class="mb-4">
               <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
               <input type="username" id="username" name="username"
