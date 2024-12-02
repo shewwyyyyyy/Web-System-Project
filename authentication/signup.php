@@ -1,10 +1,10 @@
 <?php
 
-    $FullName = $_POST["FullName"];
+    $fullName = $_POST["fullName"];
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmpassword"];
+    $confirmPassword = $_POST["confirmPassword"];
 
 
 // Get user input from the form
@@ -36,6 +36,7 @@ $confirmPassword = htmlspecialchars($_POST['confirmPassword']); // Sanitize inpu
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmPassword"];
 
+    /*
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         if(trim($password) == trim($confirmPassword))
@@ -80,5 +81,5 @@ $confirmPassword = htmlspecialchars($_POST['confirmPassword']); // Sanitize inpu
             $_SESSION["error"]="Password Incorrect";
             exit;
         }              
-    }
+    }*/
 ?>
