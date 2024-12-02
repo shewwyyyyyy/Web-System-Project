@@ -1,84 +1,65 @@
 <?php
+session_start();
 
-    $FullName = $_POST["FullName"];
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmpassword"];
+// Ensure the form is submitted via POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get user input from the form
+    $fullName = htmlspecialchars($_POST['fullName']);
+    $username = htmlspecialchars($_POST['username']);
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+    $confirmPassword = htmlspecialchars($_POST['confirmPassword']);
 
-
-// Get user input from the form
-$fullName = htmlspecialchars($_POST['fullName']); // Sanitize input
-$username = htmlspecialchars($_POST['username']); // Sanitize input
-$email = htmlspecialchars($_POST['email']); // Sanitize input
-$password = htmlspecialchars($_POST['password']); // Sanitize input
-$confirmPassword = htmlspecialchars($_POST['confirmPassword']); // Sanitize input
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Check if the passwords match
-        if ($password != $confirmPassword) {
-            echo "Passwords do not match. Please try again.";
-        } else {
-            // Display the submitted information
-            echo "<h2>Your Input:</h2>";
-            echo "Full Name: " . $fullName . "<br>";
-            echo "Username: " . $username . "<br>";
-            echo "Email: " . $email . "<br>";
-            echo "Password: " . str_repeat("*", strlen($password)) . "<br>"; // Display asterisks for security
-            echo "Password Confirmation: " . str_repeat("*", strlen($confirmPassword)) . "<br>";
-        }
+    // Check if the passwords match
+    if ($password != $confirmPassword) {
+        $_SESSION["error"] = "Passwords do not match.";
+        header("Location: /signup.php");
+        exit;
     }
 
-    
-    session_start();
-    $fullName = $_POST["fullName"];
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmPassword"];
+    // Database credentials
+    $host = "localhost";
+    $database = "blogging";
+    $dbusername = "root";
+    $dbpassword = "";
 
-    if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        if(trim($password) == trim($confirmPassword))
-        {  
-            $host = "localhost";
-            $database = "blogging";
-            $dbuserame = "root";
-            $dbpassword = "";
-            
-            $dsn = "mysql: host=$host;dbname=$database;";
-            try {
-                $conn = new PDO($dsn, $dbuserame, $dbpassword);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-                $stmt = $conn->prepare("INSERT INTO users (fullName,username,password,created_at,updated_at) VALUES (:p_fullName,:p_username,:p_password,NOW(),NOW())");
-                
-                $stmt->bindParam(':p_fullName', $fullName);
-                $stmt->bindParam(':p_username', $username);
-                $stmt->bindParam(':p_password', $password);
-                
-                $password = password_hash(trim($password),PASSWORD_BCRYPT);
-               
-                if($stmt->execute()){
-                    header("location: /signup.php");
-                    $_SESSION["success"] = "Registration Successful";
-                    exit;
-                  
-                }else{
-                    header("location: /signup.php");
-                    $_SESSION["error"] = "Insert Error";
-                    exit;
-                }
+    // DSN (Data Source Name) for MySQL
+    $dsn = "mysql:host=$host;dbname=$database;";
 
-            } catch (Exception $e){
-                header("location: /signup.php");
-                $_SESSION["error"]="Username Already Exist";
-                }
-            
-        }
-        else{
-            header("location: /signup.php");
-            $_SESSION["error"]="Password Incorrect";
+    try {
+        // Create a new PDO instance for database connection
+        $conn = new PDO($dsn, $dbusername, $dbpassword);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Set error mode
+        $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); // Fetch associative arrays
+
+        // Prepare SQL query to insert user data into the 'users' table
+        $stmt = $conn->prepare("INSERT INTO users (fullName, username, email, password, created_at, updated_at)
+                                VALUES (:p_fullName, :p_username, :p_email, :p_password, NOW(), NOW())");
+
+        // Bind parameters to the prepared statement
+        $stmt->bindParam(':p_fullName', $fullName);
+        $stmt->bindParam(':p_username', $username);
+        $stmt->bindParam(':p_email', $email);
+        $stmt->bindParam(':p_password', $password);
+
+        // Hash the password before storing it in the database
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        // Execute the prepared statement
+        if ($stmt->execute()) {
+            $_SESSION["success"] = "Registration Successful!";
+            header("Location: /login.php");
             exit;
-        }              
+        } else {
+            $_SESSION["error"] = "There was an error during registration.";
+            header("Location: /signup.php");
+            exit;
+        }
+
+    } catch (PDOException $e) {
+        $_SESSION["error"] = "Database connection failed: " . $e->getMessage();
+        header("Location: /signup.php");
+        exit;
     }
+}
 ?>

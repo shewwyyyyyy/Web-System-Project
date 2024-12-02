@@ -1,16 +1,27 @@
-<?php
-$host = "localhost";
-$database = "blogging"; //new comment
-$username = "root";
-$password = "";
-
-$dsn = "mysql: host=$host;dbname=$database;";
-try {
-    $conn = new PDO($dsn, $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e){
-    echo "Connection Failed: " . $e->getMessage();
-}//comment
+<?php 
 
 
-?>
+class DatabaseConnect {
+    private $host = "localhost";
+    private $database = "blogging";
+    private $dbusername = "root";
+    private $dbpassword = "";
+    private $charset    = 'utf8mb4';
+    private $conn = null;
+
+
+    public function connectDB(){
+        $dsn = "mysql: host=$this->host;dbname=$this->database;charset=" . $this->charset;
+        try {
+            $this->conn = new PDO($dsn, $this->dbusername, $this->dbpassword);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+            return $this->conn;
+        } catch (PDOException $e){
+            echo "Connection Failed: " . $e->getMessage();
+            return null;
+        }    
+    }
+
+}
