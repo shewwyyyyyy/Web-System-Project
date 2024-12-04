@@ -1,10 +1,10 @@
 <?php require_once("includes/header.php"); ?> 
 
-
 <body class="bg-gray-100">
   <?php include 'includes/navbar.php'; ?>
 
     <div class="container mx-auto px-4 py-8">
+        
         <!-- What's on your mind section -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-8">
             <h2 class="text-xl font-semibold mb-4">What's on your mind?</h2>
