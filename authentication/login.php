@@ -1,11 +1,11 @@
 <?php
-/*
+
 session_start();
 require_once($_SERVER["DOCUMENT_ROOT"]."/config/Directories.php");
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-include('..\config\DatabaseConnect.php');
+include('../config/DatabaseConnect.php');
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -33,14 +33,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                     exit;                   
 
                 }else{
-                    header("location: /login.php?");
+                    header("location: /login.php");
                     $_SESSION["error"] = "Password not match";
                     exit;
                
             }
             
             }else{
-                header("location: /login.php?");
+                header("location: /login.php");
                 $_SESSION["error"] = "User not found";
                 exit;
                 //echo "password did not match";
@@ -50,6 +50,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         } catch (Exception $e){
             echo "Connection failed: ".$e->getMessage();
         }
-    } */
+    } 
 
 ?>

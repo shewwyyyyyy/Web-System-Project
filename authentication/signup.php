@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':p_password', $password);
 
         // Hash the password before storing it in the database
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $password = password_hash(trim($password), PASSWORD_BCRYPT);
 
         // Execute the prepared statement
         if ($stmt->execute()) {
