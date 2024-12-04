@@ -1,7 +1,6 @@
 <?php
-
 session_start();
-require_once($_SERVER["DOCUMENT_ROOT"]."/config/Directories.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
 $username = $_POST["username"];
 $password = $_POST["password"];
 

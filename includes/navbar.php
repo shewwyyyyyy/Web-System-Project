@@ -19,7 +19,37 @@
         <li>
           <a href="login.php" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Login</a>
         </li>
-  
+        <li>
+          <a href="signup.php" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Signup</a>
+        </li>
+        
+        
+        <!-- Dropdown for Signed-in User --> 
+        <?php
+        /*
+        if(isset($_SESSION["username"])){
+        ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php echo htmlspecialchars($_SESSION["username"]); ?> <!-- Replace with dynamic username -->
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form action="<?php echo htmlspecialchars(BASE_URL); ?>logout.php" method="POST">
+                            <button class="dropdown-item" type="submit">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        <?php
+        }
+        */
+        ?>
+      
+
       </ul>
     </div>
   </div>
