@@ -9,7 +9,7 @@
 
   <!-- Navbar -->
   <?php include 'includes/navbar.php'; ?>
-  
+
   <body class="bg-gray-100 min-h-screen flex flex-col">
     <main class="flex-grow container mx-auto px-6 py-8">
       <div
