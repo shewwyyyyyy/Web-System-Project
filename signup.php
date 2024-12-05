@@ -20,7 +20,7 @@
             Create your account
           </h2>
           
-          <form action="authentication/signup.php" method="POST">
+          <form action="backend/auth/signup.php" method="POST">
             <div class="mb-4">
               <label for="fullName" class="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
               <input type="text" id="fullName" name="fullName"
