@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirmPassword = htmlspecialchars($_POST['confirmPassword']);
 
     // Check if the passwords match
-    if ($password != $confirmPassword) {
+    if ($password != $confirmPassword) {  
         $_SESSION["error"] = "Passwords do not match.";
         header("Location: /signup.php");
         exit;
