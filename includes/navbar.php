@@ -1,6 +1,4 @@
-<body>
-<nav class="bg-white border-gray-200">
-  <div class="flex justify-between p-4 border px-40 shadow-md">
+<div class="fixed top-0 left-0 right-0 z-50 flex justify-between p-4 border px-40 shadow-md bg-white">
     <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="https://placehold.co/100x100" class="h-8" alt="Logo" />
         <span class="self-center text-2xl font-semibold whitespace-nowrap">Brand</span>
@@ -23,10 +21,8 @@
           <a href="signup.php" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Signup</a>
         </li>
         
-        
         <!-- Dropdown for Signed-in User --> 
-        <?php
-        /*
+        <?php        
         if(isset($_SESSION["username"])){
         ?>
             <li class="nav-item dropdown">
@@ -36,23 +32,19 @@
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
                     <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form action="<?php echo htmlspecialchars(BASE_URL); ?>logout.php" method="POST">
-                            <button class="dropdown-item" type="submit">Logout</button>
-                        </form>
-                    </li>
+                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
             </li>
         <?php
         }
-        */
         ?>
-      
-
       </ul>
     </div>
-  </div>
-</nav>
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-</body>
+</div>
+
+<!-- Add padding to the top of the body to prevent content from being hidden behind the fixed navbar -->
+<style>
+  body {
+    padding-top: 80px; /* Adjust this value based on the height of your navbar */
+  }
+</style>
