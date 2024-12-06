@@ -26,7 +26,7 @@
         
         <!-- Dropdown for Signed-in User --> 
         <?php
-        /*
+        
         if(isset($_SESSION["username"])){
         ?>
             <li class="nav-item dropdown">
@@ -46,7 +46,7 @@
             </li>
         <?php
         }
-        */
+        
         ?>
       
 
