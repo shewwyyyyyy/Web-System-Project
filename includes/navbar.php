@@ -27,12 +27,16 @@
         ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php echo htmlspecialchars($_SESSION["username"]); ?> <!-- Replace with dynamic username -->
+                    <?php echo htmlspecialchars($_SESSION["username"]); ?>  <!-- Replace with dynamic username -->
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
                     <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                      <li>
+                          <form action="/logout.php" method="POST">
+                          <button class="dropdown-item">Logout</button>
+                          </form>
+                      </li>
                 </ul>
             </li>
         <?php

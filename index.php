@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+    require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
+    //include(ROOT_DIR."app/product/get_products.php");
+    require_once("includes/header.php"); 
+?>
 <?php require_once("includes/header.php"); ?> 
 
 <body class="bg-gray-100">
