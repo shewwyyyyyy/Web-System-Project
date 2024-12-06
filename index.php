@@ -1,19 +1,43 @@
+<?php 
+    session_start();
+    require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
+    //include(ROOT_DIR."app/product/get_products.php");
+    require_once("includes/header.php"); 
+?>
 <?php require_once("includes/header.php"); ?> 
 
 <body class="bg-gray-100">
   <?php include 'includes/navbar.php'; ?>
 
-  <form action="backend/post/create_post.php" method="POST">
     <div class="container mx-auto px-4 py-8">
         
         <!-- What's on your mind section -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Create Post</h2>
-            
-           
-                <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Post Title</label>
-                <input type="text" id="title" name="title" placeholder="Enter your post title" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                <textarea id="content" name="content" required class="w-full p-2 border border-gray-300 rounded-md mb-4" rows="3" placeholder="Share your thoughts..."></textarea>
+            <h2 class="text-xl font-semibold mb-4">What's on your mind?</h2>
+            <form action="post/add_post.php" method="POST" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                    <input type="text" id="title" name="title" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter title" required>
+                </div>
+                <div class="mb-4">
+                    <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Content</label>
+                    <textarea id="content" name="content" class="w-full p-2 border border-gray-300 rounded-md" rows="3" placeholder="Share your thoughts..." required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
+                    <select id="category" name="category" class="w-full p-2 border border-gray-300 rounded-md" required>
+                        <option value="">Select category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Health">Health</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                        <option value="Education">Education</option>
+                        <option value="Entertainment">Entertainment</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Upload Image</label>
+                    <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded-md" accept="image/*" required>
+                </div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Post</button>
             </form>
         </div>
