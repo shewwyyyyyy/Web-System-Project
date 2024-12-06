@@ -1,7 +1,8 @@
 
 <body class="bg-gray-100">
     <?php include '../includes/navbar.php'; ?>
-
+ 
+    <form action="backend/post/create_post.php" method="POST"> 
     <div class="container mx-auto px-4 py-8">
         <!-- What's on your mind section -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-8">
@@ -11,7 +12,7 @@
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Post</button>
             </form>
         </div>
-
+        </form>
         <!-- Feed -->
         <div class="space-y-8">
 

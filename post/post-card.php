@@ -1,3 +1,8 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id']);
+?>
+
 <div class="bg-white rounded-lg shadow-md overflow-hidden">
     <div class="p-6">
         <div class="flex items-center mb-4">
