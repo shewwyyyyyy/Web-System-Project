@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once($_SERVER["DOCUMENT_ROOT"]."/config/Directories.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
 include('../config/DatabaseConnect.php');
 
 $db = new DatabaseConnect();
@@ -8,11 +8,11 @@ $conn = $db->connectDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION['user_id'];
-    $postTitle    = htmlspecialchars($_POST["postTitle"]);
+    $postTitle    = htmlspecialchars($_POST["title"]);
     $postContent  = htmlspecialchars($_POST["content"]);
     $postCategory = htmlspecialchars($_POST["category"]);
-    $postImage    = htmlspecialchars($_POST["postImage"]);
 
+    /*
     // Handle image upload
     $target_dir = "../uploads/"; 
     $target_file = $target_dir . basename($image["name"]);
@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Sorry, your file is too large.";
         exit();
     }
+        */
 
     // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {

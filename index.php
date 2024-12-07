@@ -4,17 +4,16 @@
     //include(ROOT_DIR."app/product/get_products.php");
     require_once("includes/header.php"); 
 ?>
-<?php require_once("includes/header.php"); ?> 
 
 <body class="bg-gray-100">
-  <?php include 'includes/navbar.php'; ?>
+<?php include 'includes/navbar.php'; ?>
 
     <div class="container mx-auto px-4 py-8">
         
         <!-- What's on your mind section -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-8">
             <h2 class="text-xl font-semibold mb-4">What's on your mind?</h2>
-            <form action="post/add_post.php" method="POST" enctype="multipart/form-data">
+            <form action="backend/post/add_post.php" method="POST" enctype="multipart/form-data">
                 <div class="mb-4">
                     <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
                     <input type="text" id="title" name="title" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter title" required>
@@ -36,7 +35,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Upload Image</label>
-                    <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded-md" accept="image/*" required>
+                    <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded-md" accept="image/*" >
                 </div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Post</button>
             </form>
