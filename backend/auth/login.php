@@ -42,7 +42,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 header("location: /login.php");
                 $_SESSION["error"] = "User not found";
                 exit;
-                //echo "password did not match";
             }
                 
             
