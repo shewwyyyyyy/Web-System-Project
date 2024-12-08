@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 flex justify-center">
-          <a href="login.php" class="items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 sm:w-auto">Go to Login</a>
+          <a href="index.php" class="items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 sm:w-auto">Go to Home</a>
         </div>
       </div>
     </div>
