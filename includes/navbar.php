@@ -1,4 +1,4 @@
-<div class="fixed top-0 p-4 z-50 w-full bg-white dark:bg-gray-800 dark:border-gray-700 ">
+<div class="fixed top-0 p-4 z-50 w-full bg-white dark:bg-gray-800 border-solid  border-b border-neutral-border ">
     <div class="flex justify-between w-full max-w-screen-xl">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://placehold.co/100x100" class="h-8" alt="Logo" />

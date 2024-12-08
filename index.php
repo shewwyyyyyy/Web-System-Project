@@ -14,8 +14,8 @@
             </div>
 
             <div class="flex-auto">
-                <?php include 'post.php'; ?>      
-                <?php include 'post/post-card.php'; ?>    
+                <?php include 'post/post-card.php'; ?>      
+                <?php include 'feed.php'; ?>    
             </div>       
         </div>
     </div>  
