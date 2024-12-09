@@ -11,31 +11,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $postTitle    = htmlspecialchars($_POST["title"]);
     $postContent  = htmlspecialchars($_POST["content"]);
     $postCategory = htmlspecialchars($_POST["category"]);
-
-    /*
-    // Handle image upload
-    $target_dir = "../uploads/"; 
-    $target_file = $target_dir . basename($image["name"]);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    // Check if image file is a actual image or fake image
-    $check = getimagesize($image["tmp_name"]);
-    if ($check === false) {
-        echo "File is not an image.";
-        exit();
-    }
-
-    // Check file size
-    if ($image["size"] > 5000000) {
-        echo "Sorry, your file is too large.";
-        exit();
-    }
-        */
-
+    $image = $_FILES["image"];
+    $imageFileType = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
+    $target_dir = $_SERVER["DOCUMENT_ROOT"] . "/uploads/";
+    
+    // Generate a random file name to avoid duplication
+    $random_file_name = uniqid() . '.' . $imageFileType;
+    $target_file = $target_dir . $random_file_name;
+    
     // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         exit();
+    }
+
+    // Ensure the target directory exists
+    if (!is_dir($target_dir)) {
+        mkdir($target_dir, 0777, true);
     }
 
     // Move the uploaded file to the target directory
@@ -44,19 +36,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    // Get the relative path to save in the database
+    $image_path = "/uploads/" . $random_file_name;
+
     try {
-        $stmt = $conn->prepare('INSERT INTO posts (user_id, title, content, category, image) VALUES (:user_id, :title, :content, :category, :image)');
+        date_default_timezone_set('Asia/Manila');
+        $date_today = date('Y-m-d H:i:s');
+        $stmt = $conn->prepare('INSERT INTO posts (user_id, title, content, category, image, created_at, updated_at) VALUES (:user_id, :title, :content, :category, :image, :created_at, :updated_at)');
         $stmt->bindParam(':user_id', $user_id);
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':category', $category);
-        $stmt->bindParam(':image', $target_file);
+        $stmt->bindParam(':title', $postTitle);
+        $stmt->bindParam(':content', $postContent);
+        $stmt->bindParam(':category', $postCategory);
+        $stmt->bindParam(':image', $image_path);
+        $stmt->bindParam(':created_at', $date_today);
+        $stmt->bindParam(':updated_at', $date_today);
         $stmt->execute();
+        $_SESSION["success"] = "Post created successfully!";
+        header("Location: /index.php");
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 
-    header("Location: /index.php");
     exit();
 }
 ?>

@@ -3,11 +3,8 @@ session_start();
 require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
 require_once("includes/header.php");
 
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    $_SESSION = [];
-    session_destroy();
-}
+$_SESSION = [];
+session_destroy();
 ?>  
 
 <!-- Navbar -->
@@ -26,12 +23,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
               </div>
             </div>
         </div>
-        <div class="bg-gray-50 px-4 py-3 flex justify-center">
-          <a href="index.php" class="items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 sm:w-auto">Go to Home</a>
-        </div>
+ 
       </div>
     </div>
   </div>
 </div>
+
+
+
+<script> 
+    setTimeout(() => {
+        window.location.href = "login.php";
+    }, 3000);
+</script>
 
 <?php require_once(ROOT_DIR."includes/footer.php")?>

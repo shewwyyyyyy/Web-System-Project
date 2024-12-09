@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
 $username = $_POST["username"];
 $password = $_POST["password"];
@@ -20,27 +20,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             
             if($users){ 
                 if(password_verify($password,$users[0]["password"])){
+                    session_start();
                     $_SESSION = [];
-                    session_regenerate_id(true);
-                    $_SESSION['user_id'] = $users[0]['id'];
+                    $_SESSION['user_id'] = $users[0]['user_id'];
                     $_SESSION['username'] = $users[0]['username'];
-                    $_SESSION['fullName'] = $users[0]['fullName'];
-                    //$_SESSION['is_admin'] = $users[0]['is_admin'];
+                    $_SESSION['fullName'] = $users[0]['FullName'];
 
-                    
-                    header("location: /index.php");
-                    exit;                   
+
+                    header("location: /index.php");                                      
+                   exit;                   
 
                 }else{
-                    header("location: /login.php");
+                    echo "<script>alert('Password not match');</script>";
                     $_SESSION["error"] = "Password not match";
+
+                    header("location: /login.php");
                     exit;
                
             }
             
             }else{
-                header("location: /login.php");
+                echo "<script>alert('User not found');</script>";
                 $_SESSION["error"] = "User not found";
+
+                header("location: /login.php");
                 exit;
             }
                 
