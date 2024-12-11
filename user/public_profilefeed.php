@@ -1,5 +1,5 @@
 <?php
- 
+session_start();
 require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/DatabaseConnect.php");
 

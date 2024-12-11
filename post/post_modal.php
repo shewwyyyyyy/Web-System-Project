@@ -29,7 +29,7 @@
 
             <!-- Modal body -->
             <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <form action="post/add_post.php" method="POST" enctype="multipart/form-data">
+                <form action="backend/post/add_post.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-4">
                         <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
                         <input type="text" id="title" name="title" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter title" required>
@@ -45,8 +45,7 @@
                         <select id="category" name="category" class="w-full p-2 border border-gray-300 rounded-md" required>
                             <option value="">Select category</option>
                             <option value="Technology">Technology</option>
-                            <option value="Health">Health</option>
-                            <option value="Lifestyle">Lifestyle</option>
+                            <option value="Health">Health</option>  
                             <option value="Education">Education</option>
                             <option value="Entertainment">Entertainment</option>
                         </select>
@@ -56,13 +55,17 @@
                         <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Upload Image</label>
                         <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded-md" accept="image/*" >
                     </div>
-                </form>
+                    <div class="mb-4">
+                        <label for="attachments" class="block text-gray-700 text-sm font-bold mb-2">Upload Attachments</label>
+                        <input type="file" id="attachments" name="attachments[]" class="w-full p-2 border border-gray-300 rounded-md" multiple >
+                    </div>
             </div>
             
             <!-- Modal footer -->
             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Post</button>
+                <button  type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Post</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

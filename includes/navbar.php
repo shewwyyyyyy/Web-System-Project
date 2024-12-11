@@ -1,4 +1,9 @@
-<div class="fixed top-0 p-4 z-50 w-full bg-white dark:bg-gray-800 border-solid  border-b border-neutral-border ">
+<?php
+    require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
+    ?>
+
+
+<div class="fixed top-0 p-4 z-50 w-full bg-white dark:bg-gray-800 border-solid  border-b border-neutral-border  ">
     <div class="flex justify-between w-full max-w-screen-xl">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://placehold.co/100x100" class="h-8" alt="Logo" />
@@ -15,12 +20,15 @@
                 <li>
                     <a href="index.php" class="block py-2 px-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Home</a>
                 </li>
-                <li>
-                    <a href="login.php" class="block py-2 px-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Login</a>
-                </li>
-                <li>
-                    <a href="signup.php" class="block py-2 px-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Signup</a>
-                </li>
+
+                <?php if($IsAuthenticated == false) { ?>
+                    <li>
+                        <a href="login.php" class="block py-2 px-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Login</a>
+                    </li>
+                    <li>
+                        <a href="signup.php" class="block py-2 px-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Signup</a>
+                    </li>
+                <?php } ?>
                 <?php        
                 if(isset($_SESSION["username"])) { ?>
                     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex justify-center items-center text-gray-300" type="button"><?php echo $_SESSION["fullName"]?> <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -30,7 +38,10 @@
                     <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                                <a href="profile.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                            </li>
+                            <li>
+                                <a href="profile_settings.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                             </li>
                             <li>
                                 <a href="logout.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>

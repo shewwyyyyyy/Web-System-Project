@@ -1,28 +1,37 @@
-<?php
+<?php 
  
 require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/Directories.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/backend/config/DatabaseConnect.php");
+require_once("includes/header.php"); 
+include 'includes/sidenavbar.php';
+ 
 
-$db = new DatabaseConnect();
+
+$db = new DatabaseConnect(); 
 $conn = $db->connectDB();
 
-$sql = "SELECT p.post_id, p.title, p.image, p.content, u.username, u.user_id, p.created_at, 
+// Get the user ID from the URL or session
+$user_id = isset($_GET['user_id']) ? $_GET['user_id'] : $_SESSION['user_id'];
+
+$sql = "SELECT p.post_id, p.title, p.image, p.content, u.username, u.fullname, u.user_id, p.created_at, 
                (SELECT COUNT(*) FROM votes WHERE post_id = p.post_id AND vote_type = 'upvote') as upvotes,
                (SELECT COUNT(*) FROM votes WHERE post_id = p.post_id AND vote_type = 'downvote') as downvotes,
                (SELECT COUNT(*) FROM comments WHERE post_id = p.post_id) as comment_count,
                (SELECT vote_type FROM votes WHERE post_id = p.post_id AND user_id = :user_id) as user_vote
         FROM `posts` p
-        JOIN users u ON p.user_id = u.user_id
-        ORDER BY p.created_at DESC";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-$stmt->execute();
+        JOIN users u ON p.user_id = u.user_id 
+        WHERE p.user_id = :user_id
+        ORDER BY p.created_at DESC"; 
+$stmt = $conn->prepare($sql); 
+$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->execute(); 
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!function_exists('time_elapsed_string')) {
     function time_elapsed_string($datetime, $full = false) {
-        $now = new DateTime;
-        $ago = new DateTime($datetime, new DateTimeZone('Asia/Manila'));
+        // datetime gmt +8
+        $now = new DateTime; 
+        $ago = new DateTime($datetime, new DateTimeZone('Asia/Manila')); 
         $diff = $now->diff($ago);
 
         $diff->w = floor($diff->d / 7);
@@ -52,7 +61,8 @@ if (!function_exists('time_elapsed_string')) {
 ?>
 
 <!-- Reddit-like Guest Feed -->
-<div class="max-w-2xl mx-auto p-4 ">
+<div class="max-w-2xl mx-auto p-4">
+    
     <?php foreach ($posts as $post): ?>
         <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
             <div class="p-4">

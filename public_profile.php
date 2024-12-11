@@ -16,11 +16,8 @@
             <div class="flex-auto">
 
             <?php echo '<script> alert('.$_SESSION["username"].') </script>'?>   
-                <!-- Post card -->
-                <?php include 'post/post_modal.php'; ?>  
-
-                <!-- Feed -->
-                <?php include 'feed.php'; ?>    
+            <?php include 'includes/profile.php';?>
+                 
             </div>       
         </div>
     </div>  
