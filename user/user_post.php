@@ -1,13 +1,20 @@
-<?php require_once("includes/header.php"); ?>
 <?php
 //session_start();
-include('backend/config/DatabaseConnect.php'); // database connection
+include('../backend/config/DatabaseConnect.php'); // database connection
+
+// Check if user is logged in
+//if (!isset($_SESSION['user_id'])) {
+    //header("Location: login.php");
+    //exit();
+//}
 
 $db = new DatabaseConnect();
 $conn = $db->connectDB();
 
 // Fetch posts from the database
-$stmt = $conn->prepare('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id');
+$users = $_SESSION['user_id'];
+$stmt = $conn->prepare('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id WHERE users.user_id = :user_id');
+$stmt->bindParam(":user_id", $users);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
