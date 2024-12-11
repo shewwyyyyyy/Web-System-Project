@@ -18,7 +18,7 @@
         <div class="hidden w-full md:block md:w-auto " id="navbar-default">
             <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 ">
                 <li>
-                    <a href="index.php" class="block py-2 px-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Home</a>
+                    <a href="index.php" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Home</a>
                 </li>
 
                 <?php if($IsAuthenticated == false) { ?>
@@ -28,6 +28,7 @@
                     <li>
                         <a href="signup.php" class="block py-2 px-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Signup</a>
                     </li>
+                    
                 <?php } ?>
                 <?php        
                 if(isset($_SESSION["username"])) { ?>

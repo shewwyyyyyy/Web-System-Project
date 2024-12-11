@@ -7,6 +7,8 @@ $_SESSION = [];
 session_destroy();
 ?>  
 
+
+
 <!-- Navbar -->
 <?php require_once("includes/navbar.php")?>
 
@@ -18,7 +20,7 @@ session_destroy();
         <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <div class="justify-center ">
               <h3 class="text-xl font-semibold text-black-900 text-center " id="modal-title">You are logged out</h3>
-              <div class="mt-8 text-center">
+              <div class="mt-9 text-center">
                 <p class="text-sm text-gray-900">Thank you for visiting our website. You are now logged out.</p>
               </div>
             </div>
